@@ -4,7 +4,10 @@
 
 typedef struct s_data
 {
-	int		philo_count;
+	int				philo_count;
+	pthread_t		*philos;
+	pthread_mutex_t	*forks;
+
 	
 
 
