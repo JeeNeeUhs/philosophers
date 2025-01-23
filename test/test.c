@@ -6,6 +6,8 @@
 #include <pthread.h>
 
 // https://excalidraw.com/#json=_ZmmFloHU9jOosA552yn9,8E3KPOHEWoQ04Q8QJvcFyw
+// https://github.com/Dsite42/philosophers
+// https://medium.com/@ruinadd/philosophers-42-guide-the-dining-philosophers-problem-893a24bc0fe2
 
 int main(int argc, char **argv)
 {
