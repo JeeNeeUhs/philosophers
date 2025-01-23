@@ -9,7 +9,7 @@
 
 int main(int argc, char **argv)
 {
-	// ./a.out number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
+	// ./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
 
 	// just use these functions
 	// memset
