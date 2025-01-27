@@ -53,9 +53,9 @@ void	*philo_routine(void *arg)
 		ft_usleep(1);
 	while (1)
 	{
-		philo_think(philo);
 		philo_eat(philo);
 		philo_sleep(philo);
+		philo_think(philo);
 	}
 	return (NULL);
 }
