@@ -38,6 +38,7 @@ time_t	get_deltatime_ms(struct timeval tv);
 
 int		start_simulation(t_data *data);
 void	*philo_routine(void *arg);
+int	ft_usleep(size_t milliseconds);
 
 
 #endif

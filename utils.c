@@ -1,4 +1,5 @@
 #include "philo.h"
+#include <unistd.h>
 
 int	ft_atoi(const char *str)
 {
@@ -28,13 +29,13 @@ int	ft_atoi(const char *str)
 // 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 // }
 
-// time_t	get_current_time(void)
-// {
-// 	t_tv	now;
+time_t	get_current_time(void)
+{
+	struct timeval	now;
 
-// 	gettimeofday(&now, NULL);
-// 	return (now.tv_sec * 1000 + now.tv_usec / 1000);
-// }
+	gettimeofday(&now, NULL);
+	return (now.tv_sec * 1000 + now.tv_usec / 1000);
+}
 
 time_t	get_deltatime_ms(struct timeval tv)
 {
@@ -43,4 +44,14 @@ time_t	get_deltatime_ms(struct timeval tv)
 	gettimeofday(&now, NULL);
 	return ((now.tv_sec - tv.tv_sec) * 1000
 		+ (now.tv_usec - tv.tv_usec) / 1000);
+}
+
+int	ft_usleep(size_t milliseconds)
+{
+	size_t	start;
+
+	start = get_current_time();
+	while ((get_current_time() - start) < milliseconds)
+		usleep(500);
+	return (0);
 }

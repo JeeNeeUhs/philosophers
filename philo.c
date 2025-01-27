@@ -30,6 +30,10 @@ void	philo_eat(t_philo *philo)
 		pthread_mutex_lock(philo->right_fork);
 		printf("%ld %d has taken a fork\n", get_deltatime_ms(philo->data->start_tv), philo->id);
 	}
+	// pthread_mutex_lock(philo->left_fork);
+	// printf("%ld %d has taken a fork\n", get_deltatime_ms(philo->data->start_tv), philo->id);
+	// pthread_mutex_lock(philo->right_fork);
+	// printf("%ld %d has taken a fork\n", get_deltatime_ms(philo->data->start_tv), philo->id);
 	printf("%ld %d is eating\n", get_deltatime_ms(philo->data->start_tv), philo->id);
 	usleep(philo->data->time_to_eat * 1000);
 	pthread_mutex_lock(&philo->eat_lock);
@@ -45,6 +49,8 @@ void	*philo_routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+	if (philo->id % 2 == 0)
+		ft_usleep(1);
 	while (1)
 	{
 		philo_think(philo);
