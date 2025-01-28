@@ -28,9 +28,10 @@ typedef struct s_data
 	int				time_to_sleep;
 	int				must_eat_count;
 	struct timeval	start_tv;
-	int				is_dead;
 
+	int				is_dead;
 	pthread_mutex_t	is_dead_lock;
+	
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
 }	t_data;

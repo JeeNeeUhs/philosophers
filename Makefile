@@ -13,10 +13,10 @@ $(BUILD_DIR):
 	mkdir -p $@
 
 $(BUILD_DIR)/%.o: %.c | $(BUILD_DIR)
-	$(CC) $(CFLAGS) -c $^ -o $@
+	$(CC) -g -fsanitize=thread $(CFLAGS) -c $^ -o $@
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) -g -fsanitize=thread $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	$(RM) $(BUILD_DIR)

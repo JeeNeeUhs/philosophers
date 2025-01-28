@@ -53,6 +53,13 @@ void	*philo_routine(void *arg)
 		ft_sleep(1);
 	while (1)
 	{
+		pthread_mutex_lock(&philo->data->is_dead_lock);
+		if (philo->data->is_dead)
+		{
+			pthread_mutex_unlock(&philo->data->is_dead_lock);
+			return (NULL);
+		}
+		pthread_mutex_unlock(&philo->data->is_dead_lock);
 		philo_eat(philo);
 		philo_sleep(philo);
 		philo_think(philo);

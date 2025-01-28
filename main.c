@@ -28,6 +28,8 @@ static int	init_args(t_data *data, int argc, char **argv)
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
+	pthread_mutex_init(&data->is_dead_lock, NULL);
+	data->is_dead = 0;
 	if (argc == 6)
 		data->must_eat_count = ft_atoi(argv[5]);
 	else

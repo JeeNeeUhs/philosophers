@@ -59,12 +59,31 @@ static void	*monitor(void *arg)
 		if (get_deltatime_ms(data->philos[i].last_eat_tv) > data->time_to_die)
 		{
 			printf("%ld %d died\n", get_deltatime_ms(data->start_tv), data->philos[i].id);
-			exit(1);
+			pthread_mutex_lock(&data->is_dead_lock);
+			data->is_dead = 1;
+			pthread_mutex_unlock(&data->is_dead_lock);
+			pthread_mutex_unlock(&data->philos[i].last_eat_lock);
+			return (NULL);
 		}
 		pthread_mutex_unlock(&data->philos[i].last_eat_lock);
 		i++;
 	}
+	return (NULL);
 }
+
+// void	*check_dead(void *arg)
+// {
+// 	t_data	*data;
+// 	int		i;
+
+// 	data = (t_data *)arg;
+// 	while (1)
+// 	{
+// 		pthread_mutex_lock(&data->is_dead_lock);
+
+
+// 	}
+// }
 
 int	start_simulation(t_data *data)
 {
