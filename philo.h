@@ -15,7 +15,7 @@ typedef struct s_philo
 	int				eat_count;
 	struct timeval	last_eat_tv;
 	
-	pthread_mutex_t	eat_lock;
+	pthread_mutex_t	last_eat_lock;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;
 }	t_philo;
@@ -28,7 +28,9 @@ typedef struct s_data
 	int				time_to_sleep;
 	int				must_eat_count;
 	struct timeval	start_tv;
+	int				is_dead;
 
+	pthread_mutex_t	is_dead_lock;
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
 }	t_data;
@@ -38,7 +40,7 @@ time_t	get_deltatime_ms(struct timeval tv);
 
 int		start_simulation(t_data *data);
 void	*philo_routine(void *arg);
-int	ft_usleep(size_t milliseconds);
+void		ft_sleep(time_t milliseconds);
 
 
 #endif

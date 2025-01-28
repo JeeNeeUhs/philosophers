@@ -24,34 +24,28 @@ int	ft_atoi(const char *str)
 	return (sign * total);
 }
 
-// time_t	get_time_ms(t_tv tv)
-// {
-// 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
-// }
+time_t	get_time_ms(struct timeval tv)
+{
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
 
-time_t	get_current_time(void)
+time_t	get_current_time_ms()
 {
 	struct timeval	now;
 
 	gettimeofday(&now, NULL);
-	return (now.tv_sec * 1000 + now.tv_usec / 1000);
+	return (get_time_ms(now));
 }
 
 time_t	get_deltatime_ms(struct timeval tv)
 {
-	struct timeval	now;
-
-	gettimeofday(&now, NULL);
-	return ((now.tv_sec - tv.tv_sec) * 1000
-		+ (now.tv_usec - tv.tv_usec) / 1000);
+	return (get_current_time_ms() - get_time_ms(tv));
 }
 
-int	ft_usleep(size_t milliseconds)
+void	ft_sleep(time_t ms)
 {
-	size_t	start;
-
-	start = get_current_time();
-	while ((get_current_time() - start) < milliseconds)
+	time_t	start;
+	start = get_current_time_ms();
+	while ((get_current_time_ms() - start) < ms)
 		usleep(500);
-	return (0);
 }

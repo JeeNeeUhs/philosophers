@@ -36,6 +36,7 @@ static int	init_philos(t_data *data)
 		philos[i].right_fork = &data->forks[(i + 1) % data->philo_count];
 		philos[i].eat_count = 0;
 		gettimeofday(&philos[i].last_eat_tv, NULL);
+		pthread_mutex_init(&philos[i].last_eat_lock, NULL);
 		philos[i].data = data;
 		i++;
 	}
@@ -54,13 +55,13 @@ static void	*monitor(void *arg)
 	{
 		if (i == data->philo_count)
 			i = 0;
-		pthread_mutex_lock(&data->philos[i].eat_lock);
+		pthread_mutex_lock(&data->philos[i].last_eat_lock);
 		if (get_deltatime_ms(data->philos[i].last_eat_tv) > data->time_to_die)
 		{
 			printf("%ld %d died\n", get_deltatime_ms(data->start_tv), data->philos[i].id);
 			exit(1);
 		}
-		pthread_mutex_unlock(&data->philos[i].eat_lock);
+		pthread_mutex_unlock(&data->philos[i].last_eat_lock);
 		i++;
 	}
 }

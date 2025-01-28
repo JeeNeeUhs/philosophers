@@ -11,7 +11,7 @@ void	philo_think(t_philo *philo)
 void	philo_sleep(t_philo *philo)
 {
 	printf("%ld %d is sleeping\n", get_deltatime_ms(philo->data->start_tv), philo->id);
-	ft_usleep(philo->data->time_to_sleep);
+	ft_sleep(philo->data->time_to_sleep);
 }
 
 void	philo_eat(t_philo *philo)
@@ -35,10 +35,10 @@ void	philo_eat(t_philo *philo)
 	// pthread_mutex_lock(philo->right_fork);
 	// printf("%ld %d has taken a fork\n", get_deltatime_ms(philo->data->start_tv), philo->id);
 	printf("%ld %d is eating\n", get_deltatime_ms(philo->data->start_tv), philo->id);
-	ft_usleep(philo->data->time_to_eat);
-	pthread_mutex_lock(&philo->eat_lock);
+	ft_sleep(philo->data->time_to_eat);
+	pthread_mutex_lock(&philo->last_eat_lock);
 	gettimeofday(&philo->last_eat_tv, NULL);
-	pthread_mutex_unlock(&philo->eat_lock);
+	pthread_mutex_unlock(&philo->last_eat_lock);
 	philo->eat_count++;
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
@@ -50,7 +50,7 @@ void	*philo_routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
-		ft_usleep(1);
+		ft_sleep(1);
 	while (1)
 	{
 		philo_eat(philo);
