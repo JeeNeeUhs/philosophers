@@ -6,7 +6,7 @@
 /*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:30:40 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/02/16 14:19:24 by ahekinci         ###   ########.fr       */
+/*   Updated: 2025/02/16 16:06:21 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,3 @@ void	*philo_loop(void *arg)
 	}
 	return (NULL);
 }
-
-
-int	get_data_status(t_data *data)
-{
-	int status;
-
-	pthread_mutex_lock(&data->status_lock);
-	status = data->status;
-	pthread_mutex_unlock(&data->status_lock);
-	return (status);
-}
-

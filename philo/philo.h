@@ -6,7 +6,7 @@
 /*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:37:59 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/02/16 14:17:37 by ahekinci         ###   ########.fr       */
+/*   Updated: 2025/02/16 16:06:56 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_data
 	int				must_eat_count;
 	size_t			start_tv;
 	int				is_dead;
-	pthread_mutex_t status_lock;
+	pthread_mutex_t	status_lock;
 	pthread_mutex_t	is_dead_lock;
 	pthread_mutex_t	write_lock;
 	pthread_mutex_t	*forks;
@@ -62,13 +62,13 @@ int		monitor_dead(t_data *data);
 int		monitor_eat_count(t_data *data);
 void	*monitor(void *arg);
 void	set_data_status(t_data *data, int status);
+int		get_data_status(t_data *data);
 
 // philo.c
 void	*philo_loop(void *arg);
 void	philo_eat(t_philo *philo);
 void	philo_sleep(t_philo *philo);
 void	philo_think(t_philo *philo);
-int		get_data_status(t_data *data);
 
 // utils.c
 int		ft_strlen(char *str);
